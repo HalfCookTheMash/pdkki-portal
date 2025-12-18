@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------- */
+/* 1. Global Reset & Body Styling */
+/* ---------------------------------------------------- */
+/* body background color diatur via CSS Variables */
+
+@layer base { 
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Tambahkan H1 agar konsisten menggunakan warna utama */
+  h1 {
+    @apply text-primary-foreground; /* Biasanya teks putih/terang di hero section */
+  }
+  h2 {
+    @apply text-primary font-bold; /* Judul utama konten menggunakan warna biru gelap */
+  }
+}
+
+/* ---------------------------------------------------- */
+/* 2. Custom Components & Overrides */
+/* ---------------------------------------------------- */
+
+.navbar-fixed {
+  /* Ganti #FCFCFC dengan warna background PDKKI jika berbeda */
+  @apply bg-opacity-95 bg-white fixed shadow-lg; 
+  /* Pertahankan efek blur jika diinginkan */
+  backdrop-filter: blur(8px);
+}
+
+.hero-gradient {
+    background: linear-gradient(
+        to right, 
+        hsl(var(--primary)), /* Nilai HSL Biru Gelap PDKKI */
+        hsl(var(--accent) / 0.7) /* Nilai HSL Kuning/Accent PDKKI dengan opacity 70% */
+    );
+    /* Atau, jika Anda ingin menggunakan Hex code yang lebih pasti: */
+    /* background: linear-gradient(to right, #023297, rgba(255, 215, 0, 0.7)); */
+}
+
+/* ---------------------------------------------------- */
+/* 3. CSS Variables (Theming HSL) */
+/* ---------------------------------------------------- */
+
+/*
+   PENTING: GANTI NILAI HSL DI BAWAH INI
+   DENGAN WARNA BRANDING PDKKI (Hue Saturation Lightness)
+*/
+
+@layer base {
+  /* LIGHT MODE (Mode Terang) */
+  :root {
+    /* BACKGROUNDS */
+    --background: 0 0% 100%;       /* Putih */
+    --foreground: 210 20% 10%;      /* Teks gelap */
+
+    /* PRIMARIES (Biru Gelap PDKKI) */
+    --primary: 216 40% 20%;        /* Ganti dengan HSL Biru Primer PDKKI */
+    --primary-foreground: 0 0% 98%; /* Teks putih di atas primer */
+
+    /* ACCENTS (Kuning/Highlight PDKKI) */
+    --accent: 40 100% 50%;         /* Ganti dengan HSL Kuning/Accent PDKKI */
+    --accent-foreground: 210 20% 10%;
+
+    /* UI ELEMENTS */
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 10%;
+    --border: 210 10% 90%;
+    --input: 210 10% 90%;
+    --ring: 216 40% 20%;
+    --radius: 0.5rem; /* Border radius default */
+    
+    /* SECONDARY, MUTED, DESTRUCTIVE (Gunakan default atau sesuaikan) */
+    --secondary: 210 10% 95%;
+    --secondary-foreground: 210 20% 10%;
+    --muted: 210 10% 95%;
+    --muted-foreground: 210 5% 50%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+  }
+  
+  /* DARK MODE (Jika nanti dibutuhkan) */
+  .dark {
+    --background: 210 20% 10%;
+    --foreground: 0 0% 98%;
+    
+    --primary: 40 100% 50%;
+    --primary-foreground: 210 20% 10%;
+    
+    --accent: 216 40% 20%;
+    --accent-foreground: 0 0% 98%;
+    
+    --card: 210 20% 10%;
+    --card-foreground: 0 0% 98%;
+    
+    --border: 210 10% 30%;
+    --input: 210 10% 30%;
+    --ring: 40 100% 50%;
+    /* ... sesuaikan variabel lain di mode gelap ... */
+  }
+}
