@@ -144,7 +144,7 @@ export default function MapCard() {
         <div ref={mapContainerRef} className="h-full w-full bg-transparent z-0" />
         
         {/* Legend */}
-        <div className="absolute top-4 right-4 z-[1000] bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-sm border border-gray-100 min-w-[120px]">
+        <div className="absolute top-4 right-4 z-[10] bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-sm border border-gray-100 min-w-[120px]">
           <h4 className="text-[9px] font-bold text-gray-500 uppercase mb-2">Status Konsultan</h4>
           <div className="space-y-1.5">
             <LegendItem color="#E91E63" label="> 80 Konsultan" />
