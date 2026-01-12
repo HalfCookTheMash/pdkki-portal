@@ -1,30 +1,36 @@
 // src/components/LinkBox.tsx
+"use client";
 
 import React from 'react';
 import Link from 'next/link';
+import { AlertTriangle } from 'lucide-react';
 
-interface LinkBoxProps {
-    title: string;
-    href: string;
-}
+const LinkBox = () => {
+  return (
+    <Link href="/validasi-data" className="block group">
+      <div className="bg-[#FFD700] p-4 rounded-md border border-yellow-600 flex items-start gap-3 shadow-sm transition-all hover:brightness-95 hover:shadow-md cursor-pointer">
 
-const LinkBox: React.FC<LinkBoxProps> = ({ title, href }) => {
-    return (
-        <Link 
-            href={href}
-            // max-w-xl membatasi lebar agar terlihat rapi di tengah.
-            className="w-full max-w-xl flex items-center justify-between p-4 bg-white border-2 border-accent text-blue-900 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-        >
-            <span className="text-base md:text-lg">
-                {title}
-            </span>
-            
-            {/* Ikon Panah Kanan (untuk visual tautan) */}
-            <svg className="w-6 h-6 ml-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-        </Link>
-    );
+        <div className="bg-orange-500 text-white rounded-sm p-1 mt-0.5 flex items-center justify-center">
+          <AlertTriangle size={14} strokeWidth={3} />
+        </div>
+
+        <div className="flex-1">
+          <p className="text-[11px] font-bold text-gray-800 font-poppins group-hover:underline">
+            Apakah data Anda sudah benar?
+          </p>
+          <p className="text-[10px] text-gray-700 leading-tight font-poppins mt-0.5">
+            Jika Anda menemukan kesalahan pada data Anda, silakan ajukan permintaan koreksi.
+          </p>
+        </div>
+
+        <div className="self-center text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+      </div>
+    </Link>
+  );
 };
 
 export default LinkBox;

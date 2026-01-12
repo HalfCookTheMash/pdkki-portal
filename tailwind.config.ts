@@ -15,7 +15,7 @@ const config = {
          "2xl": "1280px",
        },
     },
-// ...
+
     extend: {
       colors: {
         border: "hsl(var(--border))",

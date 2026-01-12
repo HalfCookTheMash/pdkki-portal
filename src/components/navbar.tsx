@@ -1,3 +1,4 @@
+// src/components/NavBar.tsx
 "use client" 
 
 import Link from 'next/link'
@@ -16,13 +17,10 @@ const Navbar = () => {
     ]
 
     return (
-        // Menggunakan class kustom navbar-fixed dari global.css untuk fixed position, shadow, dan background
         <header className='navbar-fixed top-0 w-full z-50'> 
-            {/* 2. Container untuk lebar maksimal dan rata tengah (Sama seperti desain) */}
             <div className='container mx-auto px-8'> 
                 <div className='flex items-center justify-between h-24'> 
-                    
-                    {/* Logo Section (Kiri) */}
+
                     <div className='flex-shrink-8'>
                         <Link href="/">
                             <Image
@@ -36,24 +34,21 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    {/* Navigation Menu (Kanan - Selalu Tampil) */}
-                    <nav className='flex space-x-8'> {/* Jarak antar tautan 10 (sekitar 40px) */}
+                    <nav className='flex space-x-8'> 
                         {NavLinks.map((nav) => {
-                            // Cek apakah tautan ini sedang aktif
                             const isActive = path === nav.link || (path.startsWith(nav.link) && nav.link !== '/')
                             
                             return (
                                 <Link
                                     key={nav.name}
                                     href={nav.link}
-                                    // 3. Styling Tautan (Mengambil dari desain yang rapi)
                                     className={`
                                         text-base 
                                         font-normal 
                                         transition duration-150 
                                         ${isActive 
-                                            ? 'text-blue-900 font-semibold' // Teks Aktif (Lebih tebal dan biru)
-                                            : 'text-gray-700 hover:text-blue-700' // Teks Normal
+                                            ? 'text-blue-900 font-semibold'
+                                            : 'text-gray-700 hover:text-blue-700' 
                                         }
                                     `}
                                 >

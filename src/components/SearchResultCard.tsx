@@ -15,7 +15,7 @@ interface SearchResultCardProps {
     status: 'aktif' | 'non aktif';
     gender: ConsultantGender;
     imageUrl?: string; 
-    onClick?: () => void; // Tambah prop onClick
+    onClick?: () => void;
 }
 
 const SearchResultCard: React.FC<SearchResultCardProps> = ({
@@ -32,11 +32,11 @@ const SearchResultCard: React.FC<SearchResultCardProps> = ({
 
     return (
         <div 
-            onClick={onClick} // Pasang event klik di sini
+            onClick={onClick}
             className="flex p-6 shadow-md transition-all hover:shadow-xl hover:scale-[1.01] cursor-pointer bg-white border border-black rounded-[0.9375rem]" 
             style={{ width: '34.0625rem', height: '17.8125rem' }}
         >
-            {/* Bagian Foto & Status (Sama seperti sebelumnya) */}
+            {/* Bagian Foto & Status */}
             <div className="flex-shrink-0 relative w-44 h-full mr-6">
                 <div className="relative w-40 h-40 rounded-full overflow-hidden bg-gray-200">
                     <Image 
@@ -52,7 +52,7 @@ const SearchResultCard: React.FC<SearchResultCardProps> = ({
                 </span>
             </div>
 
-            {/* Detail Konsultan (Sama seperti sebelumnya) */}
+            {/* Detail Konsultan */}
             <div className="flex flex-col justify-center space-y-3 flex-grow overflow-hidden">
                 <h3 className="text-xl font-bold text-gray-800 truncate">{name}</h3>
                 <p className="text-sm font-semibold text-gray-600 border-b pb-2 truncate">

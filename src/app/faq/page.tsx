@@ -1,92 +1,95 @@
 "use client";
 
 import React, { useState } from 'react';
-import Hero from '@/components/hero';
-import { ChevronRight, Plus, Minus } from 'lucide-react';
+import Hero from '@/components/hero'; 
+import { ChevronDown, ChevronUp, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
 
-const FAQ_DATA = [
-  { id: 1, question: "Berapa lama masa berlaku Kode Billing yang telah dibayarkan?", answer: "Masa berlaku kode billing biasanya bervariasi tergantung pada jenis permohonan, namun umumnya aktif selama beberapa jam hingga hari sebelum kedaluwarsa jika tidak segera dibayarkan." },
-  { id: 2, question: "Bagaimana cara mengubah data profil konsultan?", answer: "Perubahan data dapat dilakukan melalui dashboard akun dengan melampirkan dokumen pendukung yang sah." },
-
+// Data FAQ
+const faqData = [
+  {
+    question: "Apa itu Konsultan Kekayaan Intelektual (KKI)?",
+    answer: "Konsultan Kekayaan Intelektual adalah profesional yang terdaftar dan memiliki lisensi untuk memberikan jasa konsultasi, pendampingan, dan pengurusan permohonan hak kekayaan intelektual seperti Paten, Merek, Hak Cipta, Desain Industri, dan Rahasia Dagang."
+  },
+  {
+    question: "Bagaimana cara mencari Konsultan KI di PDKKI?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  },
+  {
+    question: "Apa perbedaan status Aktif dan Tidak Aktif?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
+  },
+  {
+    question: "Bagaimana cara memverifikasi kebenaran Konsultan KI?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae erat ex. Nam elementum ligo ac elit pretium, eget tincidunt nisl convallis."
+  },
+  {
+    question: "Apa saja bidang keahlian yang dilayani Konsultan KI?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed id semper nisl, vel tincidunt magna."
+  },
+  {
+    question: "Apakah data di PDKKI selalu diperbarui?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed lectus et sem elementum laoreet."
+  },
+  {
+    question: "Bagaimana jika saya menemukan data yang tidak akurat?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet magna vel metus varius tincidunt."
+  },
+  {
+    question: "Apakah ada biaya untuk menggunakan layanan PDKKI?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat, lacus vitae tincidunt condimentum, nisl masea rhoncus sem, in varius purus nisal id eros."
+  }
 ];
 
-const FAQPage = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export default function FAQPage() {
 
-  const toggleAccordion = (index: number) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null); 
+
+  const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* 1. Header Hero */}
+    <main className="bg-[#F8FAFC] min-h-screen font-sans">
       <Hero />
 
-      <main className="container mx-auto px-4 md:px-12 py-12">
-
-        <nav className="text-sm text-gray-500 mb-8 flex items-center gap-2">
-          <span>Beranda</span>
-          <ChevronRight size={14} />
-          <span className="text-blue-900 font-semibold">Frequently Asked Question</span>
-        </nav>
-
-        <div className="flex flex-col lg:flex-row gap-8">
-          
-          {/* 2. Sidebar Kategori (Kiri) */}
-          <div className="w-full lg:w-1/4">
-            <div className="border border-gray-300 rounded-2xl p-6 flex justify-between items-center cursor-pointer hover:border-blue-900 transition-all group">
-              <span className="text-xl font-bold text-[#001678]">Umum</span>
-              <div className="bg-blue-900 rounded-full p-2 text-white group-hover:scale-110 transition-transform">
-                <ChevronRight size={20} />
-              </div>
-            </div>
-          </div>
-
-          {/* 3. Accordion List (Kanan) */}
-          <div className="w-full lg:w-3/4">
-            <div className="border border-yellow-200 bg-[#FFFBEB] rounded-[2rem] overflow-hidden">
-              {FAQ_DATA.map((faq, index) => (
-                <div key={faq.id} className="border-b border-gray-200 last:border-none">
-                  <button
-                    onClick={() => toggleAccordion(index)}
-                    className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-yellow-100/50 transition-colors"
-                  >
-                    <span className="font-bold text-gray-700">
-                      {index + 1}. {faq.question}
-                    </span>
-                    {openIndex === index ? (
-                      <Minus size={20} className="text-gray-500 flex-shrink-0" />
-                    ) : (
-                      <Plus size={20} className="text-gray-500 flex-shrink-0" />
-                    )}
-                  </button>
-
-
-                  <div 
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <div className="px-8 pb-8 text-gray-600 leading-relaxed border-t border-yellow-100 pt-4 bg-white/50">
-                      {faq.answer}
-                    </div>
+      <section className="container mx-auto px-4 py-16">
+        {/* Accordion List */}
+        <div className="max-w-4xl mx-auto space-y-4">
+          {faqData.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div 
+                key={index} 
+                className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
+                  type="button"
+                >
+                  <span className={`font-bold font-poppins text-lg ${isOpen ? 'text-primary' : 'text-gray-700'}`}>
+                    {item.question}
+                  </span>
+                  {isOpen ? (
+                    <ChevronUp className="w-6 h-6 text-blue-500" />
+                  ) : (
+                    <ChevronDown className="w-6 h-6 text-gray-400" />
+                  )}
+                </button>
+                <div 
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                    isOpen ? 'max-h-[500px] border-t border-gray-100' : 'max-h-0'
+                  }`}
+                >
+                  <div className="p-5 text-gray-600 leading-relaxed bg-white">
+                    {item.answer}
                   </div>
                 </div>
-              ))}
-              
-              {/* Placeholder Row untuk baris kosong sesuai gambar (7-12) */}
-              {[...Array(8)].map((_, i) => (
-                <div key={i + 5} className="px-8 py-6 border-b border-gray-200 last:border-none h-[72px]">
-                   <span className="font-bold text-gray-400 opacity-50">{FAQ_DATA.length + i + 1}.</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
+              </div>
+            );
+          })}
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
-};
-
-export default FAQPage;
+}

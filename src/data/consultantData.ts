@@ -1,8 +1,7 @@
 // src/data/consultantData.ts
 
-// 1. Definisikan Tipe Data Konsultan
 export type ConsultantStatus = 'aktif' | 'non aktif';
-export type ConsultantGender = 'Laki-laki' | 'Perempuan'; // Tambah tipe gender
+export type ConsultantGender = 'Laki-laki' | 'Perempuan';
 
 export interface Consultant {
     name: string;
@@ -11,67 +10,84 @@ export interface Consultant {
     phone: string;
     email: string;
     status: ConsultantStatus;
-    gender: ConsultantGender; // Tambah properti gender
+    gender: ConsultantGender;
     imageUrl?: string; 
 }
 
-// Data Dasar yang akan divariasikan
-const BASE_MALE_NAMES = ["Abdul Karim", "Rizki Putra", "Budi Santoso", "Eko Prasetyo", "Gatot Subroto"];
-const BASE_FEMALE_NAMES = ["Siti Rahayu", "Dewi Sartika", "Citra Dewi", "Fifi Afifah", "Hani Nurani"];
-const ALL_BASE_NAMES = [...BASE_MALE_NAMES, ...BASE_FEMALE_NAMES];
-
-const BASE_FIRMS = [
-    "Amarisdianpujawati", "Bintang Terang", "Cipta Karya", 
-    "Jaya Abadi", "Amanah", "Sejahtera", "Sentosa", 
-    "Mitra", "Utama", "Perdana"
+export const INDONESIA_PROVINCES = [
+    "Aceh", "Sumatera Utara", "Sumatera Barat", "Riau", "Kepulauan Riau",
+    "Jambi", "Bengkulu", "Sumatera Selatan", "Kepulauan Bangka Belitung", "Lampung",
+    "DKI Jakarta", "Banten", "Jawa Barat", "Jawa Tengah", "DI Yogyakarta", "Jawa Timur",
+    "Bali", "Nusa Tenggara Barat", "Nusa Tenggara Timur",
+    "Kalimantan Barat", "Kalimantan Tengah", "Kalimantan Selatan", "Kalimantan Timur", "Kalimantan Utara",
+    "Sulawesi Utara", "Gorontalo", "Sulawesi Tengah", "Sulawesi Barat", "Sulawesi Selatan", "Sulawesi Tenggara",
+    "Maluku", "Maluku Utara", "Papua", "Papua Barat", "Papua Tengah", "Papua Pegunungan", "Papua Selatan", "Papua Barat Daya"
 ];
 
-const BASE_ADDRESSES = [
-    { city: "Jakarta", address: "Jln. Perintis I/29, Kebayoran Lama." },
-    { city: "Bandung", address: "Jl. Sudirman No. 12, Braga." },
-    { city: "Surabaya", address: "Jl. Asia Afrika No. 45, Tunjungan." },
-    { city: "Medan", address: "Jl. Merdeka No. 10, Amplas." },
-    { city: "Yogyakarta", address: "Jl. Malioboro No. 20, Kraton." }
-];
+const generateRandomWeightedProvince = (): string => {
+    const specialWeights: Record<string, number> = {
+        "DKI Jakarta": 20,
+        "Jawa Barat": 11,
+        "Jawa Timur": 8,
+        "Jawa Tengah": 8,
+        "Banten": 8,
+        "Sumatera Utara": 5,
+        "Bali": 5,
+        "DI Yogyakarta": 3,
+        "Sumatera Selatan": 2,
+    };
 
-// Fungsi Utility untuk menghasilkan nomor acak dalam rentang
-const getRandomNumber = (min: number, max: number) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    const DEFAULT_WEIGHT = 1;
+
+    const allWeightedProvinces = INDONESIA_PROVINCES.map(province => ({
+        name: province,
+        weight: specialWeights[province] || DEFAULT_WEIGHT
+    }));
+
+    const totalWeight = allWeightedProvinces.reduce((acc, curr) => acc + curr.weight, 0);
+    
+    let random = Math.random() * totalWeight;
+
+    for (const item of allWeightedProvinces) {
+        if (random < item.weight) {
+            return item.name;
+        }
+        random -= item.weight;
+    }
+
+    return "DKI Jakarta";
 };
 
-// Fungsi Utility untuk memilih item acak dari array
-const getRandomItem = <T>(arr: T[]): T => {
-    return arr[Math.floor(Math.random() * arr.length)];
-};
+const BASE_MALE_NAMES = ["Abdul Karim", "Rizki Putra", "Budi Santoso", "Eko Prasetyo", "Gatot Subroto", "Dedi Wijaya", "Fajar Pratama"];
+const BASE_FEMALE_NAMES = ["Siti Rahayu", "Dewi Sartika", "Citra Dewi", "Fifi Afifah", "Hani Nurani", "Lestari Putri", "Sari Indah"];
+const BASE_FIRMS = ["Bintang Terang", "Cipta Karya", "Jaya Abadi", "Amanah", "Sejahtera", "Sentosa", "Mitra Utama", "Perdana Konsultan"];
 
-// 2. Data Dummy (DUMMY_RESULTS)
 export const DUMMY_RESULTS: Consultant[] = [];
 
-for (let i = 1; i <= 100; i++) {
-    const isMale = Math.random() < 0.5; // Acak gender
-    const baseName = isMale ? getRandomItem(BASE_MALE_NAMES) : getRandomItem(BASE_FEMALE_NAMES);
+for (let i = 1; i <= 713; i++) {
+    const isMale = Math.random() < 0.65; 
     const gender: ConsultantGender = isMale ? 'Laki-laki' : 'Perempuan';
-
-    const baseFirm = getRandomItem(BASE_FIRMS);
-    const baseAddress = getRandomItem(BASE_ADDRESSES);
-    const status: ConsultantStatus = getRandomNumber(1, 10) > 8 ? 'non aktif' : 'aktif'; 
     
-    // Generate nomor telepon acak
-    const phonePrefix = ["021", "022", "031", "061", "0274"];
-    const phone = `${getRandomItem(phonePrefix)}-${getRandomNumber(1000000, 9999999)}`;
-
-    // Generate email acak
-    const namePart = baseName.toLowerCase().replace(/\s/g, '.');
-    const domainPart = ["gmail.com", "yahoo.co.id", "example.com", "web.id"];
-    const email = `${namePart}${i}@${getRandomItem(domainPart)}`;
+    const baseName = isMale 
+        ? BASE_MALE_NAMES[Math.floor(Math.random() * BASE_MALE_NAMES.length)] 
+        : BASE_FEMALE_NAMES[Math.floor(Math.random() * BASE_FEMALE_NAMES.length)];
+    
+    const baseFirm = BASE_FIRMS[Math.floor(Math.random() * BASE_FIRMS.length)];
+    
+    const province = generateRandomWeightedProvince();
+    
+    const status: ConsultantStatus = Math.random() < 0.70 ? 'aktif' : 'non aktif'; 
+    
+    const phone = `021-${1000000 + i}`;
+    const email = `${baseName.toLowerCase().replace(/\s/g, '.')}${i}@example.com`;
 
     DUMMY_RESULTS.push({
         name: `${baseName} (ID: ${i})`,
-        firm: `Firma Hukum: ${baseFirm} & Rekan`,
-        address: `${baseAddress.address}, ${baseAddress.city}`,
+        firm: `Firma Hukum ${baseFirm}`,
+        address: `Jl. Strategis No. ${i}, ${province}`,
         phone: phone,
         email: email,
         status: status,
-        gender: gender // Masukkan nilai gender
+        gender: gender
     });
 }

@@ -1,14 +1,14 @@
-// src/app/pencarian/detail-status/page.tsx
 "use client";
 
 import React from 'react';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
-import { Download } from 'lucide-react';
+import { useSearchParams, useRouter } from 'next/navigation'; // Tambahkan useRouter
+import { Download, ChevronLeft } from 'lucide-react'; // Tambahkan icon ChevronLeft
 import Hero from '@/components/hero'; 
 
 const DetailNonAktifPage = () => {
   const searchParams = useSearchParams();
+  const router = useRouter(); // Inisialisasi router
   const name = searchParams.get('name') || 'Konsultan';
 
   const docs = [
@@ -28,11 +28,21 @@ const DetailNonAktifPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* 1. Header Hero */}
       <Hero />
 
       <div className="container mx-auto px-4 md:px-12 py-16">
-        {/* 2. Judul Section dengan Tipografi Khusus */}
+        
+        {/* Tombol Back */}
+        <button 
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-gray-500 hover:text-[#001678] transition-all mb-8 group"
+        >
+          <div className="p-2 rounded-full group-hover:bg-blue-50">
+            <ChevronLeft size={20} />
+          </div>
+          <span className="font-medium">Kembali</span>
+        </button>
+
         <div className="mb-12">
           <h2 
             style={{
@@ -47,13 +57,11 @@ const DetailNonAktifPage = () => {
           >
             Detail Non Aktif
           </h2>
-          {/* Menghilangkan bagian "Meninggal" dan langsung ke nama konsultan */}
           <p className="mt-8 text-xl font-medium text-gray-700">
             Keterangan: <span className="font-bold">{name}</span>
           </p>
         </div>
 
-        {/* 3. Dokumen Grid */}
         <div className="flex flex-wrap gap-10 md:gap-16 justify-start">
           {docs.map((doc) => (
             <div key={doc.id} className="flex flex-col items-center">

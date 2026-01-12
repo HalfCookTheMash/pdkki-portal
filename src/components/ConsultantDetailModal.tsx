@@ -1,7 +1,7 @@
 // src/components/ConsultantDetailModal.tsx
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; // Tambahkan Link
+import Link from 'next/link'; 
 import { X, Mail, Phone, MapPin, Building2, Eye } from 'lucide-react';
 
 interface ConsultantDetailModalProps {
@@ -68,7 +68,6 @@ const ConsultantDetailModal: React.FC<ConsultantDetailModalProps> = ({ isOpen, o
                     {consultant.status === 'aktif' ? (
                         <span className="text-2xl font-bold text-gray-400">-</span>
                     ) : (
-                        /* EDIT DI SINI: Navigasi ke halaman detail non aktif */
                         <Link href={`/pencarian/detail-status?name=${encodeURIComponent(consultant.name)}`}>
                           <button className="p-1 hover:bg-gray-100 rounded-full transition-colors group">
                             <Eye size={24} className="text-gray-600 group-hover:text-blue-600" />

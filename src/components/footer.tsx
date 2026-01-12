@@ -1,118 +1,115 @@
 // src/components/Footer.tsx
-
-"use client" // Karena menggunakan Link Next.js
+"use client"
 
 import Link from 'next/link';
 import Image from 'next/image';
-
-const FooterLinks = {
-    Navigasi: [
-        { name: "Beranda", href: "/" },
-        { name: "Tentang", href: "/tentang" },
-        { name: "Konsultan Aktif", href: "/pencarian?status=aktif" },
-        { name: "Konsultan Non Aktif", href: "/pencarian?status=non%20aktif" },
-    ],
-    TautanCepat: [
-        { name: "DJKI", href: "https://www.dgip.go.id" },
-        { name: "AKHKI", href: "https://www.akhki.or.id" },
-        { name: "MPKKI", href: "https://dgip.go.id/konsultan?kategori=Tentang%20Majelis%20Pengawas%20Konsultan%20KI" },
-    ]
-};
+import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className='bg-[#FAFAFA] border-t-2'>
-        <div className="container mx-auto px-8 py-12 lg:py-16 flex flex-wrap justify-between">
-            
-<div className="w-full md:w-1/3 mb-8 md:mb-0 flex">
-        
-        {/* BAGIAN KIRI: Logo DJKI */}
-        <div className="flex-shrink-0 mr-8">
-            <Image
+    <footer className="bg-white border-t-2 border-gray-200 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)] font-poppins mt-20">
+      <div className="container mx-auto px-6 lg:px-20 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-8 lg:gap-x-16">
+          
+          {/* LOGO */}
+          <div className="md:col-span-3">
+            <div className="flex justify-start items-start">
+              <Image
                 src="/assets/logo-pdkki-footer.png" 
                 alt="Logo DJKI"
-                width={180} 
-                height={40}
-                className="h-auto w-1000"
-            />
-        </div>
-
-            {/* BAGIAN KANAN: Aksen Kuning dan Link List */}
-            <div className="flex-1">
-                <div className="bg-[#FFD700] h-[2px] w-40 mb-0"></div>
-                <div className="bg-[#FFD700] h-[3px] w-24 mb-[49px]"></div>
-            
-                <ul className="flex flex-col space-y-2">
-               
-                 {FooterLinks.Navigasi.map((item) => (
-                        <li key={item.name} className="text-sm text-gray-700 font-normal hover:text-blue-700 transition">
-                          <Link href={item.href} className="flex items-center">
-                                <span className="mr-2 text-blue-900 font-bold">&gt;</span> 
-                                {item.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                width={150} 
+                height={50}
+                className="h-auto object-contain"
+                priority
+              />
             </div>
-        </div>
+          </div>
 
+          {/* MENU */}
+          <div className="md:col-span-2">
+            <h4 className="text-[#0056b3] font-bold text-lg mb-6">Menu</h4>
+            <ul className="flex flex-col gap-4">
+              {[
+                { name: "Beranda", href: "/" },
+                { name: "Tentang", href: "/tentang" },
+                { name: "Konsultan Aktif", href: "/pencarian?status=aktif" },
+                { name: "Konsultan Non Aktif", href: "/pencarian?status=non%20aktif" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-gray-600 hover:text-[#0056b3] text-sm transition-colors font-medium">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* KOLOM 2: Tautan Cepat (W: 1/3) */}
-            <div className="w-full md:w-1/4 mb-4 md:mb-0">
-            <div className="bg-[#FFD700] h-[2px] w-40 mb-0"></div>
-            <div className="bg-[#FFD700] h-[3px] w-24 mb-[49px]"></div>
-                <ul className="flex flex-col space-y-2 ">
-                    {FooterLinks.TautanCepat.map((item) => (
-                        <li key={item.name} className="text-sm text-gray-700 font-normal hover:text-blue-700 transition">
-                            <Link href={item.href} className="flex items-center" target="_blank" rel="noopener noreferrer">
-                                <span className="mr-2 text-blue-900 font-bold">&gt;</span>
-                                {item.name}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+          {/* TAUTAN RESMI */}
+          <div className="md:col-span-2">
+            <h4 className="text-[#0056b3] font-bold text-lg mb-6">Tautan Resmi</h4>
+            <ul className="flex flex-col gap-4">
+              {[
+                { name: "DJKI", href: "https://www.dgip.go.id" },
+                { name: "AKHKI", href: "https://www.akhki.or.id" },
+                { name: "MPKKI", href: "https://dgip.go.id/konsultan?kategori=Tentang%20Konsultan%20KI" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link 
+                    href={item.href} 
+                    target="_blank" 
+                    className="text-gray-600 hover:text-[#0056b3] text-sm flex items-center gap-2 transition-colors whitespace-nowrap font-medium"
+                  >
+                    {item.name}
+                    <ExternalLink size={14} className="shrink-0 text-[#0056b3]" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* KOLOM 3: Kontak Kami (W: 1/3) */}
-            <div className="w-full md:w-1/4">
-                <h4 className="text-lg font-semibold text-blue-900 mb-4">Kontak Kami</h4>
-                <div className="flex flex-col space-y-3">
-                    
-                    {/* Alamat */}
-                    <div className="flex items-start text-sm text-gray-700">
-                        {/* Ikon Lokasi - Ganti dengan SVG yang rapi */}
-                        <svg className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
-                        <span>Kementerian Hukum RI<br/>Jl. HR. Rasuna Said Kav. 8-9, Jakarta Selatan, Jakarta, Indonesia</span>
-                    </div>
+          {/* KONTAK */}
+          <div className="md:col-span-5">
+            <h4 className="text-[#0056b3] font-bold text-lg mb-6">Kontak Kami</h4>
+            <div className="flex flex-col gap-6">
 
-                    {/* Telepon */}
-                    <div className="flex items-center text-sm text-gray-700">
-                        {/* Ikon Telepon */}
-                        <svg className="w-5 h-5 mr-3 flex-shrink-0 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-1.99.9-1.99 2v18c0 1.1.89 2 1.99 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
-                        <span>152</span>
-                    </div>
-
-                    {/* Email */}
-                    <div className="flex items-center text-sm text-gray-700">
-                        {/* Ikon Email */}
-                        <svg className="w-5 h-5 mr-3 flex-shrink-0 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8.5l8 5 8-5V18z"/></svg>
-                        <span>halodjki@dgip.go.id</span>
-                    </div>
-
+              <div className="flex items-start gap-4">
+                <div className="bg-[#0056b3] p-2 rounded-full text-white shrink-0 mt-0.5">
+                  <MapPin size={18} />
                 </div>
-            </div>
-        </div>
-        
-        {/* BARIS COPYRIGHT (Sesuai Desain: Background Biru Gelap) */}
-        <div className='bg-[#023297] py-3'>
-            <div className='container mx-auto px-8'>
-                <p className='text-xs text-white text-center'>
-                    Copyright ©Direktorat Jenderal Kekayaan Intelektual - Kementerian Hukum R.I.
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  <span className="font-semibold text-gray-800">Kementerian Hukum RI</span><br />
+                  Jl. HR. Rasuna Said Kav. 8-9, Jakarta Selatan, Jakarta, Indonesia
                 </p>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="bg-[#0056b3] p-2 rounded-full text-white shrink-0">
+                  <Phone size={18} />
+                </div>
+                <p className="text-sm text-gray-600 font-medium">(021) 57905517</p>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="bg-[#0056b3] p-2 rounded-full text-white shrink-0">
+                  <Mail size={18} />
+                </div>
+                <p className="text-sm text-gray-600 font-medium">halodjki@dgip.go.id</p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
+      {/* COPYRIGHT BAR */}
+      <div className="bg-[#0042a3] py-4">
+        <div className="container mx-auto px-6">
+          <p className="text-white text-center text-xs md:text-sm font-medium tracking-wide">
+            Copyright ©Direktorat Jenderal Kekayaan Intelektual - Kementerian Hukum R.I.
+          </p>
+        </div>
+      </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

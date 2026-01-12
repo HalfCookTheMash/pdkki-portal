@@ -1,23 +1,19 @@
+// src/components/hero.tsx
 import React from 'react';
-import SearchForm from './SearchForm';
 
 const Hero = () => {
     return (
-        <section 
-            className="relative pt-24 pb-12 md:pt-28 md:pb-8 lg:pt-32 lg:pb-1"
-            style={{
-                background: 'linear-gradient(114deg, #FFCD02 -8.15%, #023297 55.13%)'
-            }}
-        >
-            <div className="container mx-auto px-4 text-center relative z-10">
-                
-                <div className="mb-10 md:mb-12">
+        <section className="bg-white pt-24 pb-8 md:pt-32 md:pb-10 lg:pt-40">
+            <div className="container mx-auto px-4 text-center">
+                {/* Judul Utama */}
+                <div className="mb-6">
                     <h1 
-                        className="font-semibold leading-tight mb-2"
                         style={{
-                            color: '#EEE',
+                            color: '#1E1E1E',
+                            textAlign: 'center',
                             fontFamily: 'Poppins, sans-serif',
-                            fontSize: '3.125rem',
+                            fontSize: '48px',
+                            fontStyle: 'normal',
                             fontWeight: 600,
                             lineHeight: 'normal'
                         }}
@@ -25,23 +21,33 @@ const Hero = () => {
                         Pangkalan Data Konsultan
                     </h1>
                     <h2 
-                        className="font-semibold leading-tight"
                         style={{
-                            color: '#EEE',
+                            color: 'primary',
+                            textAlign: 'center',
                             fontFamily: 'Poppins, sans-serif',
-                            fontSize: '3.125rem',
+                            fontSize: '48px',
+                            fontStyle: 'normal',
                             fontWeight: 600,
-                            lineHeight: 'normal'
+                            lineHeight: 'normal',
+                            marginTop: '8px' 
                         }}
                     >
-                        Kekayaan Intelektual
+                        Kekayaan Intelektual Indonesia
                     </h2>
                 </div>
 
-                {/* Form Pencarian */}
-                <div className="max-w-5xl mx-auto mb-8 md:mb-10 lg:mb-12">
-                    <SearchForm />
-                </div>
+                {/* Sub-deskripsi */}
+                <p 
+                    className="max-w-3xl mx-auto text-gray-500"
+                    style={{ 
+                        fontFamily: 'Poppins, sans-serif', 
+                        fontSize: '18px',
+                        lineHeight: 'normal',
+                        marginTop: '20px'
+                    }}
+                >
+                    Menampilkan sebaran nasional dan jaringan kantor Konsultan Kekayaan Intelektual
+                </p>
             </div>
         </section>
     );

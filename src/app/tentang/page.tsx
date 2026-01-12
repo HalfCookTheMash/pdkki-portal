@@ -1,148 +1,90 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Hero from '@/components/hero';
-import { ChevronRight, ArrowRightCircle } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 const TentangPage = () => {
-  const [activeTab, setActiveTab] = useState<'tentang' | 'informasi'>('tentang');
-
-
-  const toggleTextStyle = {
-    fontFamily: 'Inter, sans-serif',
-    fontSize: '1.125rem',
-    fontWeight: 500,  
-    lineHeight: 'normal',
-  };
-
   return (
-    <div className="min-h-screen bg-white">
+    <main className="bg-white min-h-screen pb-20 font-poppins">
       <Hero />
 
-      <main className="container mx-auto px-4 md:px-12 py-12">
+      <div className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
 
-        <nav className="text-sm text-gray-500 mb-8 flex items-center gap-2">
-          <span>Beranda</span>
-          <ChevronRight size={14} />
-          <span className="text-[#001678] font-semibold">Tentang</span>
-        </nav>
+          {/* Info Utama */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="border border-gray-200 rounded-xl p-8 shadow-sm min-h-[250px]">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Tujuan</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Menyediakan platform yang transparan dan mudah diakses bagi publik untuk memverifikasi legalitas dan kompetensi para konsultan KI di seluruh wilayah Indonesia.
+              </p>
+            </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          
-          {/* 1. Sidebar Menu (Kiri) */}
-          <div className="w-full lg:w-1/4">
-            <div className="border border-gray-300 rounded-[1.5rem] p-6 space-y-4">
-              {/* Menu Tentang */}
-              <button 
-                onClick={() => setActiveTab('tentang')}
-                className={`w-full flex justify-between items-center pb-2 border-b transition-colors ${
-                  activeTab === 'tentang' ? 'text-[#001678] border-[#001678]' : 'text-gray-500 border-gray-200'
-                }`}
-              >
-                <span className="text-xl font-bold">Tentang</span>
-                <ArrowRightCircle 
-                  size={24} 
-                  fill={activeTab === 'tentang' ? "#001678" : "none"} 
-                  className={activeTab === 'tentang' ? "text-white" : "text-gray-400"}
-                />
-              </button>
+            <div className="border border-gray-200 rounded-xl p-8 shadow-sm min-h-[250px]">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Sasaran Pengguna</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Masyarakat umum yang membutuhkan jasa konsultan KI, pelaku usaha, akademisi, dan konsultan KI yang terdaftar.
+              </p>
+            </div>
 
-              {/* Menu Informasi */}
-              <button 
-                onClick={() => setActiveTab('informasi')}
-                className={`w-full flex justify-between items-center pb-2 border-b transition-colors ${
-                  activeTab === 'informasi' ? 'text-[#001678] border-[#001678]' : 'text-gray-500 border-gray-200'
-                }`}
-              >
-                <span className="text-xl font-bold">Informasi</span>
-                <ArrowRightCircle 
-                  size={24} 
-                  fill={activeTab === 'informasi' ? "#001678" : "none"} 
-                  className={activeTab === 'informasi' ? "text-white" : "text-gray-400"}
-                />
-              </button>
+            <div className="border border-gray-200 rounded-xl p-8 shadow-sm min-h-[250px]">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Validitas Data</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Data yang ditampilkan diperbarui secara berkala dan bersumber langsung dari sistem informasi Direktorat Jenderal Kekayaan Intelektual (DJKI).
+              </p>
             </div>
           </div>
 
-          {/* 2. Konten Utama */}
-          <div className="flex justify-center lg:justify-start w-full lg:w-3/4">
-            <div 
-              style={{
-                width: '42.875rem',
-                height: '63.1875rem',
-                borderRadius: '1.25rem',
-                border: '2px solid #969191',
-                background: '#FFF',
-              }}
-              className="relative shadow-sm flex flex-col overflow-hidden"
-            >
-              {/* Header Tab */}
-              <div 
-                className="relative flex items-center z-10"
-                style={{
-                  paddingTop: '60px', 
-                  paddingLeft: '40.1px',
-                }}
-              >
-                <div className="w-24 h-24 bg-[#FFC700] rounded-full flex items-center absolute" />
-                <h1 
-                  style={{
-                    color: '#313E5E',
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '2rem',
-                    fontWeight: 800,
-                    fontStyle: 'normal',
-                    lineHeight: 'normal',
-                    marginLeft: '2.5rem',
-                  }}
-                  className="relative z-20 capitalize"
-                >
-                  {activeTab}
-                </h1>
+          {/* Penjelasan Detail & Manfaat */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="border border-gray-200 rounded-xl p-8 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-800 mb-6">
+                Apa itu Konsultan Kekayaan Intelektual?
+              </h3>
+              <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+                <p>
+                  Konsultan Kekayaan Intelektual (KKI) adalah profesional yang memiliki izin resmi untuk memberikan jasa konsultasi di bidang kekayaan intelektual.
+                </p>
+                <p>
+                  Konsultan KI harus memenuhi persyaratan tertentu dan lulus ujian sertifikasi yang diselenggarakan oleh Direktorat Jenderal Kekayaan Intelektual (DJKI).
+                </p>
+                <p>
+                Dengan menggunakan jasa Konsultan KI terdaftar, Anda dapat memastikan bahwa proses pendaftaran kekayaan intelektual Anda ditangani oleh profesional yang kompeten dan terpercaya.
+                </p>
               </div>
+            </div>
 
-              {/* Teks Penjelasan */}
-              <div 
-                className="relative z-10 text-justify px-10"
-                style={{ 
-                    marginTop: '2.5rem',
-                    paddingBottom: '104px',
-                    color: '#000000',
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '1rem', 
-                    fontWeight: 400,
-                    lineHeight: '1.6',
-                }}
-              >
-                {activeTab === 'tentang' ? (
-                  <div className="space-y-6">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </p>
-                    <p>
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                      Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam feugiat, turpis quis pellentesque semper, nisi diam vulputate elit, ac varius ex magna sit amet ex. 
-                    </p>
-                    <p>
-                      Phasellus vulputate, tortor ac finibus semper, ipsum ipsum finibus lectus, ac dapibus sem enim ac nisl. In egestas, risus eu egestas tincidunt, turpis diam porttitor ipsum, a porta sem arcu ut diam.
-                    </p>
-                  </div>
-                )}
+            {/* Bagian Catatan */}
+            <div className="border border-gray-200 rounded-xl p-8 shadow-sm flex flex-col">
+              <h3 className="text-xl font-bold text-gray-800 mb-6">
+                Manfaat Pangkalan Data Ini
+              </h3>
+              <ul className="space-y-4 mb-8">
+                {[
+                  "Verifikasi status konsultan KI secara online",
+                  "Informasi lengkap tentang bidang keahlian konsultan",
+                  "Akses ke data wilayah praktik konsultan",
+                  "Transparansi informasi untuk masyarakat",
+                  "Kemudahan dalam mencari konsultan terpercaya"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-sm text-gray-600">
+                    <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={18} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="bg-[#FFF9E6] border border-[#F6E4C1] rounded-lg p-5">
+                <p className="text-sm text-gray-800 leading-relaxed">
+                  <span className="font-bold">Catatan:</span> Pastikan selalu memverifikasi status konsultan sebelum menggunakan jasanya untuk memastikan konsultan tersebut masih aktif dan terdaftar resmi.
+                </p>
               </div>
             </div>
           </div>
-
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 };
 
