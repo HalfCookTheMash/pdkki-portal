@@ -4,11 +4,17 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Separator from '@/components/ui/separator';
 import { Home, ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center">
+      
+        <div 
+            className={`h-16 md:h-24 lg:h-32`} 
+        />
+
       <div className="relative w-full max-w-lg aspect-video mb-8">
         <Image 
           src="/assets/404.svg" 
