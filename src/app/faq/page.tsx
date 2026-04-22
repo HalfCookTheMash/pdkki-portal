@@ -1,48 +1,49 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Hero from '@/components/hero'; 
-import { ChevronDown, ChevronUp, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
-
-// Data FAQ
-const faqData = [
-  {
-    question: "Apa itu Konsultan Kekayaan Intelektual (KKI)?",
-    answer: "Konsultan Kekayaan Intelektual adalah profesional yang terdaftar dan memiliki lisensi untuk memberikan jasa konsultasi, pendampingan, dan pengurusan permohonan hak kekayaan intelektual seperti Paten, Merek, Hak Cipta, Desain Industri, dan Rahasia Dagang."
-  },
-  {
-    question: "Bagaimana cara mencari Konsultan KI di PDKKI?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-  },
-  {
-    question: "Apa perbedaan status Aktif dan Tidak Aktif?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
-  },
-  {
-    question: "Bagaimana cara memverifikasi kebenaran Konsultan KI?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae erat ex. Nam elementum ligo ac elit pretium, eget tincidunt nisl convallis."
-  },
-  {
-    question: "Apa saja bidang keahlian yang dilayani Konsultan KI?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed id semper nisl, vel tincidunt magna."
-  },
-  {
-    question: "Apakah data di PDKKI selalu diperbarui?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed lectus et sem elementum laoreet."
-  },
-  {
-    question: "Bagaimana jika saya menemukan data yang tidak akurat?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet magna vel metus varius tincidunt."
-  },
-  {
-    question: "Apakah ada biaya untuk menggunakan layanan PDKKI?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat, lacus vitae tincidunt condimentum, nisl masea rhoncus sem, in varius purus nisal id eros."
-  }
-];
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function FAQPage() {
-
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null); 
+
+  // Gunakan useMemo agar data FAQ diupdate otomatis saat bahasa (t) berubah
+  const faqData = useMemo(() => [
+    {
+      question: t.faqQ1,
+      answer: t.faqA1,
+    },
+    {
+      question: t.faqQ2,
+      answer: t.faqA2,
+    },
+    {
+      question: t.faqQ3,
+      answer: t.faqA3,
+    },
+    {
+      question: t.faqQ4,
+      answer: t.faqA4,
+    },
+    {
+      question: t.faqQ5,
+      answer: t.faqA5,
+    },
+    {
+      question: t.faqQ6,
+      answer: t.faqA6,
+    },
+    {
+      question: t.faqQ7,
+      answer: t.faqA7,
+    },
+    {
+      question: t.faqQ8,
+      answer: t.faqA8,
+    }
+  ], [t]);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -53,7 +54,6 @@ export default function FAQPage() {
       <Hero />
 
       <section className="container mx-auto px-4 py-16">
-        {/* Accordion List */}
         <div className="max-w-4xl mx-auto space-y-4">
           {faqData.map((item, index) => {
             const isOpen = openIndex === index;
@@ -67,7 +67,7 @@ export default function FAQPage() {
                   className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
                   type="button"
                 >
-                  <span className={`font-bold font-poppins text-lg ${isOpen ? 'text-primary' : 'text-gray-700'}`}>
+                  <span className={`font-bold font-poppins text-lg ${isOpen ? 'text-[#004a87]' : 'text-gray-700'}`}>
                     {item.question}
                   </span>
                   {isOpen ? (
