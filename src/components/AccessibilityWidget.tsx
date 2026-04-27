@@ -96,7 +96,7 @@ export default function AccessibilityWidget() {
               <ChevronDown className="absolute right-3 top-4 pointer-events-none text-[#004077]" size={20} />
             </div>
 
-            {/* Kontrol Audio */}
+            {/* Kontrol Audio 
             <section>
               <h3 className="text-sm font-bold border-b-2 border-[#004077] mb-4 pb-1 uppercase tracking-widest text-[#004077]">{t.audioTitle}</h3>
               <div className="grid grid-cols-3 gap-3">
@@ -122,6 +122,7 @@ export default function AccessibilityWidget() {
                 />
               </div>
             </section>
+            */}
 
             {/* Kontrol Font */}
             <section>
@@ -133,7 +134,7 @@ export default function AccessibilityWidget() {
               </div>
             </section>
 
-            {/* Kontras Tinggi */}
+            {/* Kontras Tinggi 
             <section>
               <h3 className="text-sm font-bold border-b-2 border-[#004077] mb-4 pb-1 uppercase tracking-widest text-[#004077]">{t.contrastTitle}</h3>
               <div className="grid grid-cols-3 gap-3">    
@@ -160,6 +161,7 @@ export default function AccessibilityWidget() {
                 />
               </div>
             </section>
+            */}
 
             {/* Penyesuaian Teks */}
             <section>
